@@ -1,0 +1,10 @@
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\bin\Debug\Banco.exe.config
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\bin\Debug\Banco.exe
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\bin\Debug\Banco.pdb
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.AssemblyReference.cache
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.Form1.resources
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.Properties.Resources.resources
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.GenerateResource.cache
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.CoreCompileInputs.cache
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.exe
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.pdb
