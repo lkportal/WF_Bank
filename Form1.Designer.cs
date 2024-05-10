@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtProfissao = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTelefone = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -43,16 +42,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioPremiun = new System.Windows.Forms.RadioButton();
-            this.radioEssencial = new System.Windows.Forms.RadioButton();
-            this.radioBasico = new System.Windows.Forms.RadioButton();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtRendas = new System.Windows.Forms.TextBox();
             this.txtRenda = new System.Windows.Forms.Label();
-            this.list = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,6 +105,7 @@
             this.btnEntrar.TabIndex = 5;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = true;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // txtEmail
             // 
@@ -165,14 +160,6 @@
             this.label6.Size = new System.Drawing.Size(86, 24);
             this.label6.TabIndex = 12;
             this.label6.Text = "Profissao";
-            // 
-            // txtTelefone
-            // 
-            this.txtTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefone.Location = new System.Drawing.Point(583, 204);
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(256, 29);
-            this.txtTelefone.TabIndex = 11;
             // 
             // label7
             // 
@@ -239,54 +226,6 @@
             this.txtSenha.Size = new System.Drawing.Size(256, 29);
             this.txtSenha.TabIndex = 19;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioPremiun);
-            this.groupBox1.Controls.Add(this.radioEssencial);
-            this.groupBox1.Controls.Add(this.radioBasico);
-            this.groupBox1.Location = new System.Drawing.Point(583, 546);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 57);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Plano";
-            // 
-            // radioPremiun
-            // 
-            this.radioPremiun.AutoSize = true;
-            this.radioPremiun.Location = new System.Drawing.Point(147, 19);
-            this.radioPremiun.Name = "radioPremiun";
-            this.radioPremiun.Size = new System.Drawing.Size(63, 17);
-            this.radioPremiun.TabIndex = 2;
-            this.radioPremiun.TabStop = true;
-            this.radioPremiun.Text = "Premiun";
-            this.radioPremiun.UseVisualStyleBackColor = true;
-            this.radioPremiun.CheckedChanged += new System.EventHandler(this.radioPremiun_CheckedChanged);
-            // 
-            // radioEssencial
-            // 
-            this.radioEssencial.AutoSize = true;
-            this.radioEssencial.Location = new System.Drawing.Point(70, 19);
-            this.radioEssencial.Name = "radioEssencial";
-            this.radioEssencial.Size = new System.Drawing.Size(70, 17);
-            this.radioEssencial.TabIndex = 1;
-            this.radioEssencial.TabStop = true;
-            this.radioEssencial.Text = "Essencial";
-            this.radioEssencial.UseVisualStyleBackColor = true;
-            this.radioEssencial.CheckedChanged += new System.EventHandler(this.radioEssencial_CheckedChanged);
-            // 
-            // radioBasico
-            // 
-            this.radioBasico.AutoSize = true;
-            this.radioBasico.Location = new System.Drawing.Point(7, 20);
-            this.radioBasico.Name = "radioBasico";
-            this.radioBasico.Size = new System.Drawing.Size(57, 17);
-            this.radioBasico.TabIndex = 0;
-            this.radioBasico.TabStop = true;
-            this.radioBasico.Text = "Basico";
-            this.radioBasico.UseVisualStyleBackColor = true;
-            this.radioBasico.CheckedChanged += new System.EventHandler(this.radioBasico_CheckedChanged);
-            // 
             // btnCadastrar
             // 
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -308,13 +247,13 @@
             this.label11.Text = "Cadastrar";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // txtRendas
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(583, 322);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 29);
-            this.textBox1.TabIndex = 23;
+            this.txtRendas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRendas.Location = new System.Drawing.Point(583, 322);
+            this.txtRendas.Name = "txtRendas";
+            this.txtRendas.Size = new System.Drawing.Size(256, 29);
+            this.txtRendas.TabIndex = 23;
             // 
             // txtRenda
             // 
@@ -326,27 +265,24 @@
             this.txtRenda.TabIndex = 24;
             this.txtRenda.Text = "Renda";
             // 
-            // list
+            // txtTelefone
             // 
-            this.list.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.list.Location = new System.Drawing.Point(169, 546);
-            this.list.Multiline = true;
-            this.list.Name = "list";
-            this.list.Size = new System.Drawing.Size(382, 57);
-            this.list.TabIndex = 25;
-            this.list.Visible = false;
+            this.txtTelefone.Location = new System.Drawing.Point(587, 205);
+            this.txtTelefone.Mask = "(00) 00000-0000";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(250, 20);
+            this.txtTelefone.TabIndex = 26;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 691);
-            this.Controls.Add(this.list);
+            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtRenda);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtRendas);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnCadastrar);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -355,7 +291,6 @@
             this.Controls.Add(this.txtCPF);
             this.Controls.Add(this.txtProfissao);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label4);
@@ -370,8 +305,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tela Incial";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,7 +324,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtProfissao;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTelefone;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.MaskedTextBox txtCPF;
         private System.Windows.Forms.Label label8;
@@ -399,15 +331,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtSenha;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioPremiun;
-        private System.Windows.Forms.RadioButton radioEssencial;
-        private System.Windows.Forms.RadioButton radioBasico;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtRendas;
         private System.Windows.Forms.Label txtRenda;
-        private System.Windows.Forms.TextBox list;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
     }
 }
 
