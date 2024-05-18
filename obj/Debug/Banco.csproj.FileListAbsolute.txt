@@ -8,3 +8,8 @@ D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.Ge
 D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.CoreCompileInputs.cache
 D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.exe
 D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.pdb
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.View.TelaPlano.resources
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.View.Home.resources
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\bin\Debug\System.Data.SqlServerCe.dll
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\bin\Debug\PT\System.Data.SqlServerCe.resources.dll
+D:\Documentos\Projetos Geral\BancoCadastro\Banco\Banco\obj\Debug\Banco.csproj.CopyComplete

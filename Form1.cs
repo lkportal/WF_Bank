@@ -1,4 +1,5 @@
-﻿using Banco.util;
+﻿using Banco.mdl;
+using Banco.util;
 using Banco.View;
 using System;
 using System.Collections.Generic;
@@ -25,31 +26,31 @@ namespace Banco {
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e) {
+            
+            try {
+                ConexaoBD.Conectar();
+                ConexaoBD.CreateTable();
+                if (txtNome.Text.Equals("") || txtEmail.Text.Equals("") || txtData.Text.Equals("") ||
+               txtProfissao.Text.Equals("") || txtRendas.Text.Equals("") || txtTelefone.Text.Equals("")
+               || txtSenha.Text.Equals("") || txtCPF.Text.Equals("")) {
+                    MessageBox.Show("Prencha os campo vazios!");
+                    txtNome.Focus();
+                    return;
+                }
+                else {
+                    clientes.Add(new Cliente(txtNome.Text, txtEmail.Text, rendas, txtProfissao.Text, txtSenha.Text, txtCPF.Text, txtTelefone.Text, txtData.Text));
+                    rendas = double.Parse(txtRendas.Text);
+                    txtLemail.Text = txtEmail.Text;
+                    txtLsenha.Text = txtLsenha.Text;
+                    TelaPlano.renda = double.Parse(txtRendas.Text);
+                    ConexaoBD.InserirDaDos(clientes);
+                }
 
-            if (txtNome.Text.Equals("") || txtEmail.Text.Equals("") || txtData.Text.Equals("") ||
-                 txtProfissao.Text.Equals("") || txtRendas.Text.Equals("") || txtTelefone.Text.Equals("")
-                 || txtSenha.Text.Equals("") || txtCPF.Text.Equals("")) {
-                MessageBox.Show("Prencha os campo vazios!");
-                txtNome.Focus();  
-                return;
+            } catch(Exception ex) { 
+                MessageBox.Show(ex.Message);
+            } finally {
+                ConexaoBD.Desconecta();
             }
-            else {
-                clientes.Add(new Cliente(txtNome.Text, txtEmail.Text, rendas, txtProfissao.Text,plano,txtSenha.Text,txtCPF.Text,txtTelefone.Text,txtData.Text));
-                rendas = double.Parse(txtRendas.Text);
-                txtLemail.Text = txtEmail.Text;
-                txtLsenha.Text = txtLsenha.Text;
-
-            }
-
-
-           
-            txtNome.Text = "";
-            txtEmail.Text = "";
-            txtCPF.Text = "";
-            txtData.Text = "";
-            txtProfissao.Text = "";
-            txtSenha.Text = "";
-            txtRendas.Text = "";
 
         }
 
@@ -59,8 +60,8 @@ namespace Banco {
                 if (txtLemail.Text.Equals(cliente.Email) && txtLsenha.Text.Equals(cliente.Senha)) {
                     TelaPlano tela = new TelaPlano();
                     tela.ShowDialog();
-                    this.Close();
-                  
+                    this.Visible = false;
+                    
                 }
                 else{
                     MessageBox.Show("Email ou Senha incorretas ");
@@ -68,5 +69,10 @@ namespace Banco {
 
             }
         }
+
+  
+        
+
     }
-}
+    }
+
