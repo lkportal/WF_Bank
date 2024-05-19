@@ -8,6 +8,9 @@ using System.Data.SqlServerCe;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using Banco.util;
+using System.Data;
+using System.Collections;
+
 namespace Banco.mdl {
  class ConexaoBD {
         public static string caminhoPath = Application.StartupPath + @"\db\bdCadastro.sdf";
@@ -98,9 +101,43 @@ namespace Banco.mdl {
                 comando.Dispose();
                 MessageBox.Show("Cliente Inserido");
             }
+
             conexao.Close();
         } 
 
+        public static bool ChecaValidacao(string email, string senha) {
+           string query = "SELECT EMAIL, SENHA FROM CLIENTE WHERE EMAIL = @Email AND SENHA = @Senha";
+     
+            using (SqlCeConnection conexao = new SqlCeConnection(urlBD)) {
+                try {
+                    conexao.Open();
+                    using (SqlCeCommand comando = new SqlCeCommand(query, conexao)) {
+                        comando.Parameters.AddWithValue("@Email", email);
+                        comando.Parameters.AddWithValue("@Senha", senha);
 
+                        using (SqlCeDataAdapter adaptador = new SqlCeDataAdapter(comando)) {
+                            DataTable dt = new DataTable();
+                            adaptador.Fill(dt);
+                            comando.Dispose();
+                            foreach (DataRow linha in dt.Rows) {
+                                if (linha["EMAIL"].Equals(email) && linha["SENHA"].Equals(senha)) {
+                                    return true;
+                                }
+                                MessageBox.Show($"Email: {linha["EMAIL"]}, Senha: {linha["SENHA"]}");
+                            }
+                        }
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show("Erro: " + ex.Message);
+                } finally {
+                    conexao.Close();
+                    
+                }
+            }
+
+            return false ;
+
+
+        }
     }
 }

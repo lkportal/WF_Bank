@@ -40,8 +40,7 @@ namespace Banco {
                 else {
                     clientes.Add(new Cliente(txtNome.Text, txtEmail.Text, rendas, txtProfissao.Text, txtSenha.Text, txtCPF.Text, txtTelefone.Text, txtData.Text));
                     rendas = double.Parse(txtRendas.Text);
-                    txtLemail.Text = txtEmail.Text;
-                    txtLsenha.Text = txtLsenha.Text;
+                    
                     TelaPlano.renda = double.Parse(txtRendas.Text);
                     ConexaoBD.InserirDaDos(clientes);
                 }
@@ -55,19 +54,18 @@ namespace Banco {
         }
 
         private void btnEntrar_Click(object sender, EventArgs e) {
-            foreach(Cliente cliente in clientes) {
-
-                if (txtLemail.Text.Equals(cliente.Email) && txtLsenha.Text.Equals(cliente.Senha)) {
+       
+                if (ConexaoBD.ChecaValidacao(txtLemail.Text, txtLsenha.Text)) {
                     TelaPlano tela = new TelaPlano();
-                    tela.ShowDialog();
+                    tela.ShowDialog();    
                     this.Visible = false;
-                    
+                  
                 }
                 else{
                     MessageBox.Show("Email ou Senha incorretas ");
                 }
 
-            }
+            
         }
 
   

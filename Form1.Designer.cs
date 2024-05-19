@@ -47,6 +47,7 @@
             this.txtRendas = new System.Windows.Forms.TextBox();
             this.txtRenda = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtResultado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -273,11 +274,22 @@
             this.txtTelefone.Size = new System.Drawing.Size(250, 20);
             this.txtTelefone.TabIndex = 26;
             // 
+            // txtResultado
+            // 
+            this.txtResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResultado.Location = new System.Drawing.Point(68, 538);
+            this.txtResultado.Name = "txtResultado";
+            this.txtResultado.Size = new System.Drawing.Size(281, 73);
+            this.txtResultado.TabIndex = 27;
+            this.txtResultado.Text = "label12";
+            this.txtResultado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 691);
+            this.Controls.Add(this.txtResultado);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtRenda);
             this.Controls.Add(this.txtRendas);
@@ -336,6 +348,7 @@
         private System.Windows.Forms.TextBox txtRendas;
         private System.Windows.Forms.Label txtRenda;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
+        private System.Windows.Forms.Label txtResultado;
     }
 }
 
