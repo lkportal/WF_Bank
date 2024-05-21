@@ -99,7 +99,7 @@
             this.txtPlanoInformation.Location = new System.Drawing.Point(60, 168);
             this.txtPlanoInformation.Multiline = true;
             this.txtPlanoInformation.Name = "txtPlanoInformation";
-            this.txtPlanoInformation.Size = new System.Drawing.Size(698, 270);
+            this.txtPlanoInformation.Size = new System.Drawing.Size(698, 267);
             this.txtPlanoInformation.TabIndex = 3;
             this.txtPlanoInformation.Visible = false;
             // 

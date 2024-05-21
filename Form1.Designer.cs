@@ -48,6 +48,8 @@
             this.txtRenda = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtResultado = new System.Windows.Forms.Label();
+            this.txtDeposito = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -284,11 +286,31 @@
             this.txtResultado.Text = "label12";
             this.txtResultado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtDeposito
+            // 
+            this.txtDeposito.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeposito.Location = new System.Drawing.Point(583, 563);
+            this.txtDeposito.Name = "txtDeposito";
+            this.txtDeposito.Size = new System.Drawing.Size(256, 29);
+            this.txtDeposito.TabIndex = 28;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(584, 532);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(136, 24);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Deposito Inicial";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 691);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtDeposito);
             this.Controls.Add(this.txtResultado);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtRenda);
@@ -349,6 +371,8 @@
         private System.Windows.Forms.Label txtRenda;
         private System.Windows.Forms.MaskedTextBox txtTelefone;
         private System.Windows.Forms.Label txtResultado;
+        private System.Windows.Forms.TextBox txtDeposito;
+        private System.Windows.Forms.Label label12;
     }
 }
 

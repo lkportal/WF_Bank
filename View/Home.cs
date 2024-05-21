@@ -20,8 +20,8 @@ namespace Banco.View {
         }
         
         private void Home_Load(object sender, EventArgs e) {
-            labelNome.Text = Cliente.Nome;
-            labelPlano.Text = Cliente.Plano;
+            labelNome.Text = SistemaBanco.Nome;
+            labelPlano.Text = SistemaBanco.Plano;
             labelSaldo.Text = SistemaBanco.Saldo.ToString();
         }
 

@@ -13,34 +13,38 @@ using System.Windows.Forms;
 
 namespace Banco {
     public partial class Form1 : Form {
-        List<Cliente> clientes;
+        List<SistemaBanco> clientes;
 
-        string plano;
+        double saldo;
         double rendas;
+
         
 
 
         public Form1() {
             InitializeComponent();
-            clientes= new List<Cliente>();  
+            clientes= new List<SistemaBanco>();  
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e) {
             
             try {
                 ConexaoBD.Conectar();
-                ConexaoBD.CreateTable();
+               
+
                 if (txtNome.Text.Equals("") || txtEmail.Text.Equals("") || txtData.Text.Equals("") ||
                txtProfissao.Text.Equals("") || txtRendas.Text.Equals("") || txtTelefone.Text.Equals("")
-               || txtSenha.Text.Equals("") || txtCPF.Text.Equals("")) {
+               || txtSenha.Text.Equals("") || txtCPF.Text.Equals("") || txtDeposito.Text.Equals("")) {
                     MessageBox.Show("Prencha os campo vazios!");
                     txtNome.Focus();
                     return;
                 }
                 else {
-                    clientes.Add(new Cliente(txtNome.Text, txtEmail.Text, rendas, txtProfissao.Text, txtSenha.Text, txtCPF.Text, txtTelefone.Text, txtData.Text));
                     rendas = double.Parse(txtRendas.Text);
-                    
+                    saldo = double.Parse(txtDeposito.Text);
+                    clientes.Add(new SistemaBanco(txtNome.Text, txtEmail.Text,rendas, txtProfissao.Text, txtSenha.Text, txtCPF.Text, txtTelefone.Text, txtData.Text,saldo));
+
+                    SistemaBanco.DepositoIncial = double.Parse(txtDeposito.Text);
                     TelaPlano.renda = double.Parse(txtRendas.Text);
                     ConexaoBD.InserirDaDos(clientes);
                 }
@@ -68,9 +72,7 @@ namespace Banco {
             
         }
 
-  
-        
-
+      
     }
     }
 

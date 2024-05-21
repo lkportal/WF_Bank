@@ -15,8 +15,8 @@ namespace Banco.mdl {
  class ConexaoBD {
         public static string caminhoPath = Application.StartupPath + @"\db\bdCadastro.sdf";
         public static string urlBD = "DataSource="+caminhoPath+";password=1234;";
-        SqlCeConnection conexao = new SqlCeConnection(urlBD);
 
+        int checandoLinha;
 
         public static void Conectar() {
             SqlCeEngine conn = new SqlCeEngine(urlBD);
@@ -49,24 +49,38 @@ namespace Banco.mdl {
 
             SqlCeConnection conexao = new SqlCeConnection(urlBD);
             conexao.Open();
-            string query = $"CREATE TABLE Cliente(" +
-                "ID INT PRIMARY KEY," +
+            string query = $"CREATE TABLE CLIENTE(" +
+                "ID INT PRIMARY KEY IDENTITY," +
                 "NOME NVARCHAR(50)," +
                 "EMAIL NVARCHAR(50)," +
                 "RENDA NUMERIC(10,2)," +
                 "PROFISSAO NVARCHAR(50)," +
-                "PLANO NVARCHAR (10)," +
                 "SENHA NVARCHAR(50)," +
                 "CPF NVARCHAR(15)," +
                 "TELEFONE NVARCHAR(15)," +
                 "DATA_NASCIMENTO DATETIME" +
-                ");";
-            SqlCeCommand comando = new SqlCeCommand(query,conexao) ;
+                ")";
+            string query2 = $"CREATE TABLE SISTEMA_BANCO" +
+                $"(" +
+                $"ID INT PRIMARY KEY IDENTITY," +
+                $"PLANO NVARCHAR(10)," +
+                $"SALDO NUMERIC(20,2)," +
+                $"TAXA_MANUTENCAO NUMERIC(10,2)," +
+                $"TAXA_JUROS NUMERIC(10,2)," +
+                $"TAXA_SAQUE NUMERIC(10,2)," +
+                $"CLIENTE_FK INT," +
+                $"FOREIGN KEY (CLIENTE_FK) REFERENCES CLIENTE(ID) " +
+                $")";
+
+       
             try {
-                
-                comando.CommandText = query;
+
+                using SqlCeCommand comando = new SqlCeCommand(query, conexao);
                 comando.ExecuteNonQuery();
                 comando.Dispose();
+                using SqlCeCommand comando1 = new SqlCeCommand(query2, conexao);
+                comando1.ExecuteNonQuery(); 
+                comando1.Dispose();
                 MessageBox.Show($"Tabela Cliente criada");
             }catch(Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -74,23 +88,86 @@ namespace Banco.mdl {
                 conexao.Close();
             }  
         }
+      public static void InserirDadosTBSistemabanco(double saldo,int id) {
+            SqlCeCommand comando = new SqlCeCommand();
+            SqlCeConnection conexao = new SqlCeConnection(urlBD);
+            conexao.Open();
+            string query = "INSERT INTO SISTEMA_BANCO (PLANO,SALDO,TAXA_MANUTENCAO,TAXA_JUROS,TAXA_SAQUE,CLIENTE_FK) VALUES (@PLANO,@SALDO,@TAXA_MANUTENCAO," +
+                "@TAXA_JUROS," +
+                "@TAXA_SAQUE," +
+                "@IDCLIENTE)";
+            try {
+                comando.Connection = conexao;
+                comando.CommandText = query;
+                if (SistemaBanco.Plano.Equals("basico",StringComparison.OrdinalIgnoreCase)) {
 
-        public static void InserirDaDos(List<Cliente> dados) {
-            int id = new Random(DateTime.Now.Millisecond).Next(0, 5000);
+                    comando.Parameters.AddWithValue("@PLANO", SistemaBanco.Plano = "Básico");
+                    comando.Parameters.AddWithValue("@SALDO",saldo);
+                    comando.Parameters.AddWithValue("@TAXA_MANUTENCAO",0.05);
+                    comando.Parameters.AddWithValue("@TAXA_JUROS",0.02);
+                    comando.Parameters.AddWithValue("@TAXA_SAQUE", 0.1);
+                    comando.Parameters.AddWithValue("@IDCLIENTE",id);
+                    comando.Connection = conexao;
+                    comando.ExecuteNonQuery();
+                    comando.Dispose();
+                    MessageBox.Show("Usuario inserido basico");
+                   
+
+                }
+                else if (SistemaBanco.Plano.Equals("essencial", StringComparison.OrdinalIgnoreCase)) {
+
+                    comando.Parameters.AddWithValue("@PLANO", SistemaBanco.Plano = "Essencial");
+                    comando.Parameters.AddWithValue("@SALDO", saldo);
+                    comando.Parameters.AddWithValue("@TAXA_MANUTENCAO", 0.07);
+                    comando.Parameters.AddWithValue("@TAXA_JUROS", 0.04);
+                    comando.Parameters.AddWithValue("@TAXA_SAQUE", 0.05);
+                    comando.Parameters.AddWithValue("@IDCLIENTE", id);
+                    comando.Connection = conexao;
+                    comando.ExecuteNonQuery();
+                    comando.Dispose();
+                    MessageBox.Show("Usuario inserido essencial");
+                }
+                else if (SistemaBanco.Plano.Equals("premiun", StringComparison.OrdinalIgnoreCase)) {
+
+                    comando.Parameters.AddWithValue("@PLANO", SistemaBanco.Plano = "Premiun");
+                    comando.Parameters.AddWithValue("@SALDO", saldo);
+                    comando.Parameters.AddWithValue("@TAXA_MANUTENCAO", 0.1);
+                    comando.Parameters.AddWithValue("@TAXA_JUROS", 0.07);
+                    comando.Parameters.AddWithValue("@TAXA_SAQUE", 0.02);
+                    comando.Parameters.AddWithValue("@IDCLIENTE", id);
+                    comando.Connection = conexao;
+                    comando.ExecuteNonQuery();
+                    comando.Dispose();
+                    MessageBox.Show("Usuario inserido premiun");
+                }
+                else {
+                    MessageBox.Show("Plano não definido");
+                }
+            }catch(Exception ex) {
+                MessageBox.Show(ex.Message);
+            } finally {
+                conexao.Close();
+            }
+            
+
+
+
+        }
+        public static void InserirDaDos(List<SistemaBanco> dados) {
+            int id = 0;
             SqlCeCommand comando = new SqlCeCommand();
             SqlCeConnection conexao = new SqlCeConnection(urlBD);
             conexao.Open();
             comando.Connection = conexao;
-            foreach (Cliente cliente in dados) {
-                comando.CommandText = "INSERT INTO CLIENTE (ID, NOME, EMAIL, RENDA, PROFISSAO, PLANO, SENHA, CPF, TELEFONE, DATA_NASCIMENTO) " +
-                                      "VALUES (@id, @nome, @Email, @Renda, @Profissao, @Plano, @Senha, @cpf, @Telefone, @DataNascimento)";
+            foreach (SistemaBanco cliente in dados) {
+                comando.CommandText = "INSERT INTO CLIENTE ( NOME, EMAIL, RENDA, PROFISSAO, SENHA, CPF, TELEFONE, DATA_NASCIMENTO) " +
+                                      "VALUES ( @nome, @Email, @Renda, @Profissao, @Senha, @cpf, @Telefone, @DataNascimento)";
 
-                comando.Parameters.AddWithValue("@id", id++);
+                
                 comando.Parameters.AddWithValue("@nome", Cliente.Nome);
                 comando.Parameters.AddWithValue("@Email", cliente.Email);
                 comando.Parameters.AddWithValue("@Renda", cliente.Renda);
                 comando.Parameters.AddWithValue("@Profissao", cliente.Profisso);
-                comando.Parameters.AddWithValue("@Plano", Cliente.Plano);
                 comando.Parameters.AddWithValue("@Senha", cliente.Senha);
                 comando.Parameters.AddWithValue("@cpf", cliente.cpf);
                 comando.Parameters.AddWithValue("@Telefone", cliente.Telefone);
@@ -104,6 +181,8 @@ namespace Banco.mdl {
 
             conexao.Close();
         } 
+
+      
 
         public static bool ChecaValidacao(string email, string senha) {
            string query = "SELECT EMAIL, SENHA FROM CLIENTE WHERE EMAIL = @Email AND SENHA = @Senha";
